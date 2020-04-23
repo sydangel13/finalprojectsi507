@@ -14,3 +14,7 @@ After getting your API keys, the user must make sure they have sqlite3 running o
 Next, they may run the program. 
 
 After running the program, the user is prompted to type in a city to search, or exit. They are then asked to type in a type of food or restaurant, or exit. After typing in a statement, twenty results from Yelp come up that relate to the search. They are then prompted to select the number of the restaurant they want delivery information on, or exit. Once they select the restaurant they want to know more about, EatStreet API is used to see whether or not that restaurant delivers from EatStreet. If it does, the delivery minimum, price and phone number are displayed. They can then select their data visualization preference, based on four different options. I am using Plotly for my data visualizations -- the data options include either a scatterplot, map of the US, or a bar chart. 
+
+
+Resources: 
+I used plotly.com/python for help with creating the graphs/data visualizations for this project, in conjunction with Mark Newman's lecture notes. 
