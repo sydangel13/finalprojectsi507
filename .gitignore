@@ -2,3 +2,4 @@ __pycache__
 secrets.py
 secrets.pyc
 final_project.sqlite
+yelp_cache.json
