@@ -219,6 +219,58 @@ def map_plot(long, lat, names, search_city, food_type):
    )
    fig.show()
 
+def scatter_plot(prices, names):
+   fig = go.Figure()
+   fig.add_trace(go.Scatter(x=prices,
+                                y=names,
+                                marker = dict(color="red", size=14),
+                                mode='markers',
+                                marker_color=reviews,
+                                text=names)) 
+
+   fig.update_layout(title="Restaurants in each price range",
+                     xaxis_title = "Prices")
+   fig.show()
+   # labels = ['$', '$$', '$$$', '$$$$']
+   # labels = prices
+   # values = names
+   # fig = go.Figure(data = [go.Pie(labels=labels, values=values, hole=.4)])
+   # fig.show()
+
+
+
+def scatter(ratings, reviews, names):
+   fig = go.Figure()
+   fig.add_trace(go.Scatter(x=ratings,
+                                y=reviews,
+                                marker = dict(color="blue", size=13),
+                                mode='markers',
+                                marker_color=reviews,
+                                text=names)) 
+
+   fig.update_layout(title="Rating of Restaurant compared to it's Reviews",
+                     xaxis_title = "Average rating of restaurant",
+                     yaxis_title = "Average number of reviews for restaurant")
+   fig.show()
+
+def bar_chart(prices, ratings):
+
+   # # labels = ['$', '$$', '$$$', '$$$$']
+   fig = go.Figure([go.Bar(x=prices, y=ratings)])
+   fig.update_layout(title="Restaurant price compared to it's rating",
+                     xaxis_title = "Price of the restaurant",
+                     yaxis_title = "Rating of the restaurant")
+   fig.show()
+   # fig = go.Figure(data=[go.Scatter(
+   #    x=prices, y=ratings,
+   #    text=names,
+   #    marker = dict(color = "blue", size=13),
+   #    mode='markers',
+   #    # marker=dict(size=15, sizemin=12,
+   # )])
+
+   # fig.show()
+
 if __name__ == "__main__":
    create_db()
    while True:
@@ -293,15 +345,19 @@ if __name__ == "__main__":
                print(f"EatStreet delivery information for {r_name}")
                print("-------------------------------") 
                eat_details = eat_street_info(r_name, launch)
+               delv_price = []
+               name_r = []
                for item in eat_details['restaurants']: 
                   db_eatstreet()
                   if item in eat_details['restaurants']:
                      name = item['name']
+                     name_r.append(name)
                      delivery = item['offersDelivery']
                      deliveryMin = item['deliveryMin']
                      deliveryPrice = item['deliveryPrice']
                      if deliveryPrice == '':
                         deliveryPrice = "No delivery price listed"
+                     delv_price.append(deliveryPrice)
                      phone = item['phone']
                      print(f"Delivery offered for {name}: {delivery}. Delivery minimum: ${deliveryMin}. Delivery price: ${deliveryPrice}. Phone: {phone}")
                if eat_details['restaurants'] == []:
@@ -310,19 +366,23 @@ if __name__ == "__main__":
       print("Data Visualizations:")
       print("-------------------------------") 
       print(f"[1] Map of top restaurants in {search_city}, showing {food_type} cuisine.")
+      print(f"[2] Scatterplot showing the price of each result for {food_type} in {search_city}.")
+      print(f"[3] Scatterplot illustrating the rating vs. number of reviews.")
+      print(f"[4] Bar chart illustrating the price vs. rating of {food_type} in {search_city}.")
       # while True:
       data_vis = input("Please select the number for how you would like your data to be presented, or 'exit':")
       data_number = data_vis.strip()
       if data_number == 'exit':
          break
       data_number = int(data_number)
-      # if int_info < 1:
-      #       print('[Error] Invalid input')
-      # if int_info >= counter:
-      #       print('[Error] Invalid input')
-      # else:
       if data_number == 1:
          print(map_plot(long, lat, names, search_city, food_type))
+      if data_number == 2: 
+         print(scatter_plot(prices, names))
+      if data_number == 3:
+         print(scatter(ratings, reviews, names))
+      if data_number == 4:
+         print(bar_chart(prices, ratings))
       
          
    
