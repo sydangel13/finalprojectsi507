@@ -5,7 +5,6 @@ import sqlite3
 import requests
 import json
 import time
-from bs4 import BeautifulSoup
 import plotly.graph_objects as go
 # import plotly.graph_objs as go
 
