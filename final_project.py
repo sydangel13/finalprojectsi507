@@ -6,12 +6,8 @@ import requests
 import json
 import time
 import plotly.graph_objects as go
-# import plotly.graph_objs as go
 
 
-# DBNAME = "yelp_search.db"
-# header = {'authorization': "Bearer " + API_KEY}
-# baseurl = 'https://api.yelp.com/v3/businesses/search'
 CACHE_FILE_NAME = 'yelp_cache.json'
 CACHE_DICT = {}
 
